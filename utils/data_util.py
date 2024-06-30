@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 from typing import Iterable, Iterator, TypeVar
+from PIL import Image
+import io
+import base64
 
 T = TypeVar("T")
 
@@ -36,3 +39,9 @@ def batch_iter(iterable: Iterable[T], batch_size: int) -> Iterator[list[T]]:
             batch = []
     if len(batch) > 0:
         yield batch
+
+
+def encode_image_to_base64(image: Image) -> str:
+    buffered = io.BytesIO()
+    image.save(buffered, format=image.format or "PNG")
+    return base64.b64encode(buffered.getvalue()).decode("utf-8")

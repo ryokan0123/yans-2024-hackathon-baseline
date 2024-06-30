@@ -18,6 +18,9 @@ async def _retry_on_error(
     max_num_trials: int = 5,
     first_wait_time: int = 10,
 ) -> Awaitable[T] | None:
+    """
+    API送信時にエラーが発生した場合にリトライするための関数です。
+    """
     for i in range(max_num_trials):
         try:
             return await openai_call()
@@ -33,16 +36,17 @@ async def _retry_on_error(
 
 class OpenAIChatAPI:
     """
-    LanguageModel implementation using OpenAI's ChatGPT API.
+    OpenAI APIのラッパーです。
+    `batch_generate_chat_response`メソッドを使用して、複数のチャットリクエストを並列で送信できます。
 
     Args:
-        model: The name of the model to use.
-        api_headers: A dictionary of headers to use when making requests to the OpenAI API.
+        model: 使用するモデルの名前。
+        api_headers: OpenAI APIに送信するリクエストのヘッダー。
     """
 
     def __init__(
         self,
-        model: str = "gpt-4o",
+        model: str = "gpt-4o-mini",
         api_headers: dict[str, str] | None = None,
     ) -> None:
         self.model = model

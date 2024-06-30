@@ -10,6 +10,9 @@ packages = [{include = "yans_2024_hackathon_baseline"}]
 python = "^3.10"
 openai = "^1.35.7"
 datasets = "^2.20.0"
+pillow = "^10.4.0"
+loguru = "^0.7.2"
+matplotlib = "^3.9.2"
 
 
 [tool.poetry.group.dev.dependencies]
