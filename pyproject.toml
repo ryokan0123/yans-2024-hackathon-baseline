@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "yans-2024-hackathon-baseline"
+version = "0.1.0"
+description = ""
+authors = ["Ryou0634 <ryou0634@gmail.com>"]
+readme = "README.md"
+packages = [{include = "yans_2024_hackathon_baseline"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^1.35.7"
+datasets = "^2.20.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
