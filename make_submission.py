@@ -142,8 +142,6 @@ if __name__ == "__main__":
     # if "item_to_api_input" not in locals():
     #     msg = "用いるデータセットに適した item_to_api_input を選択してください。"
     #     raise RuntimeError(msg)
-    # from baselines.ogiri_fewshot import ogiri_item_to_api_input
-    # item_to_api_input = ogiri_item_to_api_input
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_name", type=str)
