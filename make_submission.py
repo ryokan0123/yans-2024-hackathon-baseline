@@ -17,7 +17,7 @@ def ogiri_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
     messages = [
         {
             "role": "system",
-            "content": "あなたはユーモアに溢れた大喜利 AI です。与えられたお題に対して、面白い回答をお願いします。",
+            "content": "あなたはユーモアに溢れた大喜利 AI です。与えられたお題に対して、面白い回答をお願いします。回答のみを出力してください。",
         }
     ]
     if item["type"] == "text_to_text":
@@ -47,7 +47,10 @@ def ogiri_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
                     },
                     {
                         "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"},
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{image_base64}",
+                            "detail": "low",
+                        },
                     },
                 ],
             }
@@ -67,7 +70,10 @@ def ogiri_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
                     },
                     {
                         "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"},
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{image_base64}",
+                            "detail": "low",
+                        },
                     },
                 ],
             }
@@ -86,7 +92,7 @@ def senryu_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
     messages = [
         {
             "role": "system",
-            "content": "あなたは川柳 AI です。与えられたお題に対して、一句詠んでください。",
+            "content": "あなたは川柳 AI です。与えられたお題に対して、一句詠んでください。回答となる川柳のみを出力してください。",
         }
     ]
     if item["type"] == "text_to_text":
@@ -116,7 +122,10 @@ def senryu_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
                     },
                     {
                         "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"},
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{image_base64}",
+                            "detail": "low",
+                        },
                     },
                 ],
             }
@@ -128,11 +137,13 @@ def senryu_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 if __name__ == "__main__":
-    # item_to_api_input = ogiri_item_to_api_input  # 大喜利データセットを使う場合
+    item_to_api_input = ogiri_item_to_api_input  # 大喜利データセットを使う場合
     # item_to_api_input = senryu_item_to_api_input  # 川柳データセットを使う場合
-    if "item_to_api_input" not in locals():
-        msg = "用いるデータセットに適した item_to_api_input を選択してください。"
-        raise RuntimeError(msg)
+    # if "item_to_api_input" not in locals():
+    #     msg = "用いるデータセットに適した item_to_api_input を選択してください。"
+    #     raise RuntimeError(msg)
+    # from baselines.ogiri_fewshot import ogiri_item_to_api_input
+    # item_to_api_input = ogiri_item_to_api_input
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_name", type=str)
