@@ -101,9 +101,14 @@ class OpenAIChatAPI:
         api_responses = asyncio.run(
             self._async_batch_run_chatgpt(chat_messages_list, **kwargs),
         )
+        model_outputs: list[str] = []
         for res in api_responses:
+            model_output = res.choices[0].message.content
+            model_outputs.append(model_output)
+
+            logger.info(f"モデル出力: {model_output}")
             logger.info(res.usage)
-        return [res.choices[0].message.content for res in api_responses]
+        return model_outputs
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(model={self.model})"
