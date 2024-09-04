@@ -49,7 +49,7 @@ def ogiri_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
                         "type": "image_url",
                         "image_url": {
                             "url": f"data:image/jpeg;base64,{image_base64}",
-                            "detail": "low",
+                            "detail": "low", # 低解像度モード。API使用量を節約するために基本このオプションを使用してください
                         },
                     },
                 ],
@@ -72,7 +72,7 @@ def ogiri_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
                         "type": "image_url",
                         "image_url": {
                             "url": f"data:image/jpeg;base64,{image_base64}",
-                            "detail": "low",
+                            "detail": "low", # 低解像度モード。API使用量を節約するために基本このオプションを使用してください
                         },
                     },
                 ],
@@ -124,7 +124,7 @@ def senryu_item_to_api_input(item: dict[str, Any]) -> list[dict[str, Any]]:
                         "type": "image_url",
                         "image_url": {
                             "url": f"data:image/jpeg;base64,{image_base64}",
-                            "detail": "low",
+                            "detail": "low", # 低解像度モード。API使用量を節約するために基本このオプションを使用してください
                         },
                     },
                 ],
